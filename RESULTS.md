@@ -14,3 +14,6 @@
 - Expected result: No pizza can be cut without a tool, so the API refuses the request with status 400 and a JSON error message, for example `{"error": "no pizza matches the restrictions"}`.
 - Actual result: Status `HTTP/2 500`, `content-length: 0`, no body at all. Covered by `test_excluded_tools.py::test_all_tools_excluded_is_refused` (xfail, strict).
 - Severity: Medium. Only an unusual input triggers it and no data is lost, but the server fails instead of validating its input, and an app that calls the API gets no message that it can show to the customer.
+
+## Part A
+- Step A4, status codes when the other user reads, changes and deletes: read 404 `{"error":"not found"}`, change 400 `{"error":"rating ID <id> not found"}`, delete 400 `{"error":"rating ID <id> not found"}`. After each attempt the owner still reads the rating unchanged (200).
