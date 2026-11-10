@@ -29,3 +29,27 @@ All tests are in `test_create_rating.py`. Each non-base block changes one charac
 | C4 | the user's own (base) | `test_base_choice_is_saved` |
 | C4 | none | `test_no_token_is_refused` |
 | C4 | wrong length | `test_token_wrong_length_is_refused` |
+
+## How to install and run
+
+macOS / Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pytest -v
+```
+
+Windows PowerShell: `python -m venv .venv`, `.venv\Scripts\activate`, `pip install -r requirements.txt`, `pytest -v`.
+
+Save a report of a full run with `pytest -v --html=report.html --self-contained-html`.
+
+Expected result: `32 passed, 1 xfailed`. The xfailed test is Defect 1 (see `RESULTS.md`).
+
+## Files
+
+- `conftest.py`: fixtures `api` (one session, keeps the load-balancer cookie), `auth` and `other_auth` (a new user each), `pizza_id`, `rating` (made before and deleted after the test)
+- `test_*.py`: one file per area; Part A is in `test_create_rating.py`, `test_update_rating.py`, `test_rating_owner.py`
+- `auth.txt`, `veg.json`, `all_tools.json`, `madeup.txt`: files for the curl commands
+- `RESULTS.md`: answers, defect report and reflection
